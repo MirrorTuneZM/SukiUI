@@ -44,7 +44,7 @@ namespace SukiUI.Utilities.Effects
         {
             _shaderString = shaderString;
             _rawShaderString = rawShaderString;
-            var compiledEffect = SKRuntimeEffect.Create(_shaderString, out var errors);
+            var compiledEffect = SKRuntimeEffect.CreateShader(_shaderString, out var errors);
             Effect = compiledEffect ?? throw new ShaderCompilationException(errors);
         }
 
@@ -148,7 +148,7 @@ namespace SukiUI.Utilities.Effects
                 { "iDark", activeVariant == ThemeVariant.Dark ? 1f : 0f },
                 { "iAlpha", alpha }
             };
-            return Effect.ToShader(false, inputs);
+            return Effect.ToShader(inputs);
 
             (float r, float g, float b) ToFloat(Color col) =>
                 (col.R / 255f, col.G / 255f, col.B / 255f);
